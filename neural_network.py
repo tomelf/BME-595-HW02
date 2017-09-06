@@ -1,5 +1,5 @@
 import torch
-import numpy as np
+import math
 
 class NeuralNetwork(object):
     def __init__(self, in_layer, *h_arr):
@@ -9,8 +9,8 @@ class NeuralNetwork(object):
         for i in range(len(h_arr)):
             s = in_layer if i==0 else h_arr[i-1]
             e = h_arr[i]
-            l = np.random.normal(0, 1/np.sqrt(e), (s+1,e))
-            self.layers.append(torch.DoubleTensor(l))
+            l = torch.normal(means=torch.zeros(s+1,e), std=torch.zeros(s+1,e).fill_(1/math.sqrt(e))).type(torch.DoubleTensor)
+            self.layers.append(l)
 
     def getLayer(self, layer):
         return self.layers[layer-1]

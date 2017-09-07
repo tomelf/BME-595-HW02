@@ -9,16 +9,16 @@ class NeuralNetwork(object):
         for i in range(len(h_arr)):
             s = in_layer if i==0 else h_arr[i-1]
             e = h_arr[i]
-            l = torch.normal(means=torch.zeros(s+1,e), std=torch.zeros(s+1,e).fill_(1/math.sqrt(e))).type(torch.DoubleTensor)
+            l = torch.normal(means=torch.zeros(e, s+1), std=torch.zeros(e, s+1).fill_(1/math.sqrt(e))).type(torch.DoubleTensor)
             self.layers.append(l)
 
     def getLayer(self, layer):
         return self.layers[layer-1]
 
     def forward(self, input):
-        output = input.view(1, input.size()[0]) if len(input.size()) == 1 else input
+        output = input.view(input.size()[0], 1) if len(input.size()) == 1 else input
         for idx, layer in enumerate(self.layers):
-            bias = torch.randn(output.size()[0], 1).type(torch.DoubleTensor)
-            output = torch.cat((bias, output), 1)
-            output = torch.sigmoid(output.mm(layer))
+            bias = torch.randn(1, output.size()[1]).type(torch.DoubleTensor)
+            output = torch.cat((bias, output), 0)
+            output = torch.sigmoid(layer.mm(output))
         return output

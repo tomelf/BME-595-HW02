@@ -5,7 +5,7 @@
 ### Class NeuralNetwork
 - Constructor: take the numbers of layers as input, randomly initialize a series of theta layers (including bias layer)
 - getLayer: take one index of theta layers as input, return the specific theta layer
-- forward: take a 1D tensor [DoubleTensor size k] or a 2D tensor [DoubleTensor size n x k] as input, forward the input to all layers and return the output
+- forward: take a 1D tensor [DoubleTensor size k] or a 2D tensor [DoubleTensor size k x n] as input, forward the input to all layers and return the output
 
 ## Part B
 

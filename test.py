@@ -3,17 +3,17 @@ from logic_gates import AND, OR, NOT, XOR
 import torch
 
 def main():
-    nn = NN(10, 10, 5, 2)
-    input = torch.randn(10, 3).type(torch.DoubleTensor)
-    print("input", input)
-    output = nn.forward(input)
-    print("output", output)
+    # nn = NN(2, 1)
+    # input = torch.DoubleTensor([[1,1,0,0],[1,0,1,0]])
+    # print("input", input)
+    # output = nn.forward(input)
+    # print("output", output)
 
     And = AND()
     Or = OR()
     Not = NOT()
     Xor = XOR()
-
+    
     print(And(True, True), And(True, False), And(False, True), And(False, False))
     print(Or(True, True), Or(True, False), Or(False, True), Or(False, False))
     print(Not(True), Not(False))

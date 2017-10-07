@@ -12,8 +12,8 @@
 ### Class AND, OR, NOT, XOR
 
 - Each class extends the class NeuralNetwork
-- The first step is coverting x, y from boolean to (1,0), then perform the following operations:
-  - AND: the logic is to get the boolean value of [torch.add(x,y).ge(2) == 1]
-  - OR: the logic is to get the boolean value of [torch.add(x,y).ge(1) == 1]
-  - NOT: the logic is to get the boolean value of [~x == 1]
-  - XOR: the logic is to get the boolean value of [torch.add(x*~y, ~x*y).ge(1) == 1]
+- The following are the manually-crafted weights created by trial and error
+  - AND: NeuralNetwork(2,1). First layer: [-15, 10, 10]
+  - OR: NeuralNetwork(2,1). First layer: [-15, 30, 30]
+  - NOT: NeuralNetwork(1,1). First layer: [10, -20]
+  - XOR: NeuralNetwork(2,2,1). First layer: [[-40, 60, -60], [25, 50, -50]], Second layer: [40, 80, -80]

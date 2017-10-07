@@ -18,7 +18,7 @@ class NeuralNetwork(object):
     def forward(self, input):
         output = input.view(input.size()[0], 1) if len(input.size()) == 1 else input
         for idx, layer in enumerate(self.layers):
-            bias = torch.randn(1, output.size()[1]).type(torch.DoubleTensor)
+            bias = torch.ones(1, output.size()[1]).type(torch.DoubleTensor)
             output = torch.cat((bias, output), 0)
             output = torch.sigmoid(layer.mm(output))
         return output
